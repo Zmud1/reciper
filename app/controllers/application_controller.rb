@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   def hello
     render html: "hello, world!"
+    link_to 'About', about_path
   end
     
 end
