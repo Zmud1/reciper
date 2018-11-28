@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   
   get '/help', to: 'static_pages#help'
   
-  get '/contact', to: 'static_pages#contact' 
+  get '/contact', to: 'static_pages#contact'
+  
+  post '/signup', to: 'users#create'
+  resources :users
 
 end
