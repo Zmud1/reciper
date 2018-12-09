@@ -1,0 +1,4 @@
+validuser:
+  name: Valid Name
+  email: valid@email.com
+  password_digest: <%= User.digest('password') %>
