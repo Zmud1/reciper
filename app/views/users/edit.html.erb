@@ -1,0 +1,10 @@
+<% provide(:title, "Edit") %>
+<% provide(:missing_url, edit_user_path) %>
+<% provide(:button_text, "Submit changes") %>
+<h1>Update your data</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <%= render "users/form" %>
+  </div>
+</div>
