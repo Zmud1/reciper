@@ -10,25 +10,29 @@ User.create!(name:  "admin",
              password:              "123456",
              password_confirmation: "123456",
              admin: true,
-             activated: true)
+             activated: true,
+             activated_at: Time.zone.now)
 User.create!(name:  "test",
              email: "test@test.com",
              password:              "123456",
              password_confirmation: "123456",
              admin: false,
-             activated: true)
+             activated: true,
+             activated_at: Time.zone.now)
 User.create!(name:  "test2",
              email: "test2@test.com",
              password:              "123456",
              password_confirmation: "123456",
              admin: false,
-             activated: true)
+             activated: true,
+             activated_at: Time.zone.now)
 User.create!(name:  "test3",
              email: "test3@test.com",
              password:              "123456",
              password_confirmation: "123456",
              admin: false,
-             activated: true)
+             activated: true,
+             activated_at: Time.zone.now)
 User.create!(name:  "unactivated",
              email: "unactivated@test.com",
              password:              "123456",
