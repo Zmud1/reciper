@@ -67,4 +67,32 @@ test "password should have a minimum length" do
     assert_not @user.authenticated?(:remember, '')
   end
   
+  test " should follow and unfollow user" do
+    user1 = users(:validuser2)
+    user2 = users(:validuser4)
+    assert_not user1.following?(user2)
+    user1.follow(user2)
+    assert user1.following?(user2)
+    assert user2.followers.include?(user1)
+    user1.unfollow(user2)
+    assert_not user1.following?(user2)
+  end
+  
+   test "feed should have the right posts" do
+    user = users(:validuser)
+    user2  = users(:validuser2)
+    user3    = users(:validuser3)
+    # Posts from followed user
+    user2.microposts.each do |post_following|
+      assert user.feed.include?(post_following)
+    end
+    # Posts from self
+    user.microposts.each do |post_self|
+      assert user.feed.include?(post_self)
+    end
+    # Posts from unfollowed user
+    user2.microposts.each do |post_unfollowed|
+      assert_not user3.feed.include?(post_unfollowed)
+    end
+  end 
 end

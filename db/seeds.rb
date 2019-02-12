@@ -54,7 +54,15 @@ User.create!(name:  "unactivated2",
     user.microposts.create!(content: contentt)
     contentt += 'k'
     end
-  end
+  end 
+
+#Following relationships
+  users = User.all.to_a
+  User.first.followers = users.values_at(1,2,3)
+  User.second.followers = users.values_at(0,2,3)
+  User.third.followers = users.values_at(0,3)
+    
+ 
 
 
 

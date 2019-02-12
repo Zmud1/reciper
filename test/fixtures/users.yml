@@ -16,4 +16,16 @@ validuser3:
   name: Valid Name 3
   email: valid3@email.com
   password_digest: <%= User.digest('password') %>
+  activated: true
+
+validuser4:
+  name: Valid Name 4
+  email: valid43@email.com
+  password_digest: <%= User.digest('password') %>
+  activated: true
+
+validuser5:
+  name: Valid Name 5
+  email: valid5@email.com
+  password_digest: <%= User.digest('password') %>
   activated: false
