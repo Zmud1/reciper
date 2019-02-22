@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)
     end
    
-     def following
+  def following
     @title = "Following"
     @user  = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page])

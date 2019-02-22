@@ -1,10 +1,10 @@
-<% if dupa.errors.any? %>
+<% if object1.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      The form contains <%= pluralize(dupa.errors.count, "error") %>.
+      The form contains <%= pluralize(object1.errors.count, "error") %>.
     </div>
     <ul>
-    <% dupa.errors.full_messages.each do |msg| %>
+    <% object1.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
