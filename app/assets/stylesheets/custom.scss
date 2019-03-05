@@ -42,12 +42,12 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 1.3em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #777;
+  color: black;
 }
 
 p {
@@ -60,12 +60,12 @@ p {
   margin-right: 10px;
   font-size: 1.7em;
   color: #fff;
-  text-transform: uppercase;
+  /*text-transform: uppercase; */
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   &:hover {
-    color: #f5ff;
+    color:#ff9933;
     text-decoration: none;
   }
 }

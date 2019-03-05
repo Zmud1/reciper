@@ -1,11 +1,9 @@
 <% provide(:title, "Help") %>
     <h1>Help</h1>
-    <p>
-      Get help on the Ruby on Rails Tutorial at the
-      <a href="http://www.railstutorial.org/help">Rails Tutorial help
-      section</a>.
-      To get help on this sample app, see the
-      <a href="http://www.railstutorial.org/book"><em>Ruby on Rails
-      Tutorial</em> book</a>.
-    </p>
+    
+    <h2>Sign up</h2><p style="text-align:center;">Create your own account on <%= link_to 'Reciper', signup_path %></p>
+    <h2>Log in</h2><p style="text-align:center;">Activate your account and log in</p>
+    <h2>Share</h2><p style="text-align:center;">Let other users know what have you eaten recently . Create posts with description and list of ingredients. Don't forget to include a pciture!</p>
+    <h2>Follow</h2><p style="text-align:center;">Explore the community. Browse other <%= link_to "Users", users_path %>' feeds and follow the ones you find the most interesting.</p>
+
   </body>
