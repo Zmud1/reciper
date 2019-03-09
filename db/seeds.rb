@@ -62,7 +62,10 @@ User.create!(name:  "unactivated2",
   User.second.followers = users.values_at(0,2,3)
   User.third.followers = users.values_at(0,3)
     
- 
+ #Ingredients
+ Ingredient.create!(name: 'Banana')
+ Ingredient.create!(name: 'Apple')
+ Ingredient.create!(name: 'Peanuts')
 
 
 

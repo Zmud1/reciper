@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190131004126) do
+ActiveRecord::Schema.define(version: 20190306164103) do
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_ingredients_on_name"
+  end
+
+  create_table "ingredients_microposts", id: false, force: :cascade do |t|
+    t.integer "ingredient_id"
+    t.integer "micropost_id"
+    t.index ["ingredient_id", "micropost_id"], name: "index_ingredients_microposts_on_ingredient_id_and_micropost_id", unique: true
+    t.index ["ingredient_id"], name: "index_ingredients_microposts_on_ingredient_id"
+    t.index ["micropost_id"], name: "index_ingredients_microposts_on_micropost_id"
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text "content"
