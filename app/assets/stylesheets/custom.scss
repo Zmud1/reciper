@@ -254,3 +254,13 @@ span.picture {
 #user_name {
   font-size: 1,8em;
 }
+
+/* Experimenting with Ingredient params */
+
+#checkbox_experiment {
+  border: 1px solid #bbb;
+  width: 100%;
+  padding: 40px;
+  margin-bottom: 15px;
+  @include box_sizing;
+}

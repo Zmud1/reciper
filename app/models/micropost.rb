@@ -7,11 +7,16 @@ class Micropost < ApplicationRecord
   validates :content, presence: true, length: {maximum:140}
   validate :picture_size
   
+  Ingredient.all.collect{|x| attr_accessor x.name}
+
+
+  
   def picture_size
     if picture.size > 2.megabytes
       errors.add(:picture, " is too large! It must be smaller than 2 megabytes")
     end
   end
       
+ 
   
 end

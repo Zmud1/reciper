@@ -3,6 +3,14 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
+  <% Ingredient.all.each do |testingr| %>
+  <div id = 'checkbox_experiment'>
+    <%= f.label :"#{testingr.name}", class:"checkbox inline" do %>
+      <%= f.check_box :"#{testingr.name}" %>
+      <span><%= "#{testingr.name}" %> </span>
+      </div>
+    <% end %>
+  <% end%>
   <%= f.submit "Post", class: "btn btn-primary" %>
    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 <% end %>

@@ -4,6 +4,11 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
+    params[:micropost].except(:content).each do |key, value|
+      if value == '1'
+        @micropost.ingredients << Ingredient.find_by(name: "#{key}")
+      end
+    end
     if @micropost.save
       flash[:success] = "Micropost created!"
       redirect_to root_url
@@ -18,7 +23,7 @@ class MicropostsController < ApplicationController
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || root_url
   end
-
+   
   private
   
     def correct_user
@@ -28,6 +33,6 @@ class MicropostsController < ApplicationController
 
 
     def micropost_params
-      params.require(:micropost).permit(:content, :picture)
+      params.require(:micropost).permit(:content, :picture, Ingredient.all.collect{|x| x.name})
     end
 end
