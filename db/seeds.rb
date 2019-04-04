@@ -66,6 +66,9 @@ User.create!(name:  "unactivated2",
  Ingredient.create!(name: 'Banana')
  Ingredient.create!(name: 'Apple')
  Ingredient.create!(name: 'Peanuts')
+ Ingredient.create!(name: 'Milk')
+ Ingredient.create!(name: 'Tomatoes')
+ Ingredient.create!(name: 'Orange')
 
 
 

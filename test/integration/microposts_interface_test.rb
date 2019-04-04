@@ -6,6 +6,8 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:validuser)
     @user2 = users(:validuser2)
+    @ing1 = ingredients(:banana)
+    @ing2 = ingredients(:apple)
   end
   
   test "whole microposts" do
@@ -14,7 +16,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'div.pagination'
     #Invalid empy micropost
     assert_no_difference 'Micropost.count' do
-      post microposts_path, params: {micropost: {content: ''}}
+      post microposts_path, params: {micropost: {content: '', ingredient_ids: [@ing1.id,@ing2.id]}}
     end
     #Too long micropost
     assert_no_difference 'Micropost.count' do
@@ -24,10 +26,11 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     # Valid submission
     content = "This micropost really ties the room together"
     assert_difference 'Micropost.count', 1 do
-      post microposts_path, params: { micropost: { content: content } }
+      post microposts_path, params: { micropost: { content: content, ingredient_ids: [@ing1.id,@ing2.id] } }
     end
     follow_redirect!
     assert_template root_path
+    assert Micropost.first.ingredients.include?(@ing1) && Micropost.first.ingredients.include?(@ing2)
     assert_match content, body
     #Delete link
     first_micropost = @user.microposts.paginate(page: 1).first 

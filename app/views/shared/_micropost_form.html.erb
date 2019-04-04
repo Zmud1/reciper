@@ -3,14 +3,27 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
-  <% Ingredient.all.each do |testingr| %>
-  <div id = 'checkbox_experiment'>
-    <%= f.label :"#{testingr.name}", class:"checkbox inline" do %>
-      <%= f.check_box :"#{testingr.name}" %>
-      <span><%= "#{testingr.name}" %> </span>
-      </div>
-    <% end %>
-  <% end%>
+  <div >
+    <%= collection_select(:micropost, :ingredient_ids, Ingredient.order('name ASC'), :id, :name, options={prompt: false}, html_options ={multiple: true, size: 5}) %>
+  </div>
+  
+  <%#-- Below is wrapped handicapped and unoptimal method of adding ingredients to micropost form %>
+  <div> 
+<%
+=begin %>
+      <% Ingredient.all.each do |testingr| %>
+      <div id = 'checkbox_experiment'>
+      <%= f.label :"#{testingr.name}", class:"checkbox inline" do %>
+        <%= f.check_box :"#{testingr.name}" %>
+        <span><%= "#{testingr.name}" %> </span>
+        </div>
+      <% end %>
+    <% end%>
+<% 
+=end
+%> 
+ </div>
+ 
   <%= f.submit "Post", class: "btn btn-primary" %>
    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 <% end %>
