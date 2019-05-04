@@ -49,7 +49,7 @@ User.create!(name:  "unactivated2",
 
   User.all.each do |user|
     contentt = 'k'
-    k = 'k' * 70
+    k = 'k' * 50
     while contentt < k do
     user.microposts.create!(content: contentt)
     contentt += 'k'

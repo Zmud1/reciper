@@ -10,21 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190306164103) do
+ActiveRecord::Schema.define(version: 20190420002731) do
+
+  create_table "ingredient_quantities", force: :cascade do |t|
+    t.integer "micropost_id"
+    t.integer "ingredient_id"
+    t.float "quantity"
+    t.string "measure"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_ingredient_quantities_on_ingredient_id"
+    t.index ["micropost_id", "ingredient_id"], name: "index_ingredient_quantities_on_micropost_id_and_ingredient_id", unique: true
+    t.index ["micropost_id"], name: "index_ingredient_quantities_on_micropost_id"
+  end
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_ingredients_on_name"
-  end
-
-  create_table "ingredients_microposts", id: false, force: :cascade do |t|
-    t.integer "ingredient_id"
-    t.integer "micropost_id"
-    t.index ["ingredient_id", "micropost_id"], name: "index_ingredients_microposts_on_ingredient_id_and_micropost_id", unique: true
-    t.index ["ingredient_id"], name: "index_ingredients_microposts_on_ingredient_id"
-    t.index ["micropost_id"], name: "index_ingredients_microposts_on_micropost_id"
   end
 
   create_table "microposts", force: :cascade do |t|

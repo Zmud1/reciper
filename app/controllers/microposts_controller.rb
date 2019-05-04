@@ -4,6 +4,11 @@ class MicropostsController < ApplicationController
   
   def create
     @micropost = current_user.microposts.build(micropost_params)
+    @micropost.ingredient_quantities.each.collect do |i|
+      if i.quantity == 0
+        i.delete
+      end 
+    end 
     if @micropost.save
       flash[:success] = "Micropost created!"
       redirect_to root_url
@@ -28,7 +33,7 @@ class MicropostsController < ApplicationController
 
 
     def micropost_params
-      params.require(:micropost).permit(:content, :picture, ingredient_ids: [])#This is for the unoptimal method, Ingredient.all.collect{|x| x.name})
+      params.require(:micropost).permit(:content, :picture, {ingredient_ids: []}, ingredient_quantities_attributes: [:micropost_id, :ingredient_id, :quantity, :measure]) #This is for the unoptimal method, Ingredient.all.collect{|x| x.name})
     end
     
 end

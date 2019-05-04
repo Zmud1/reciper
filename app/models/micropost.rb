@@ -1,6 +1,9 @@
 class Micropost < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :ingredients
+  has_many :ingredient_quantities
+  has_many :ingredients, through: :ingredient_quantities
+  accepts_nested_attributes_for :ingredient_quantities
+ 
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   validates :user_id, presence: true

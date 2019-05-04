@@ -1,32 +1,63 @@
+<%@micropost.ingredient_quantities.build%>
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object1: f.object %>
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
-  <div >
-    <%= collection_select(:micropost, :ingredient_ids, Ingredient.order('name ASC'), :id, :name, options={prompt: false}, html_options ={multiple: true, size: 5}) %>
-  </div>
   
-  <%#-- Below is wrapped handicapped and unoptimal method of adding ingredients to micropost form %>
-  <div> 
+  <div class= 'btn btn-primary' id = "add_ingredient">Add ingredient!</div>
+  <div id='place_for_render'></div>
+  <script type="text/javascript">
+  $('#add_ingredient').on("click",function(){
+     $("#place_for_render").append("<%= escape_javascript(render partial: 'shared/choose_ingredient', locals: {f: f} ) %>");
+  });
+</script>
+  
+  <div >
+    <%#= collection_select(:micropost, :ingredient_ids, Ingredient.order('name ASC'), :id, :name, options={prompt: false}, html_options ={multiple: true, size: 5}) %>
+  </div>
+  <%#-- Below is wrapped method with working ingredient quantities, where each ingredient generates a separate form. Try to use Ajax to generate a new form after choosing an ingredient%>
+<div class="field"><%
+=begin
+  %>
+  <% Ingredient.all.each do |ingr| %>
+  <%=f.fields_for(:ingredient_quantities) do |ff| %>
+  <span><%= "#{ingr.name}" %> </span>
+  <%= ff.hidden_field :ingredient_id, value: ingr.id %>
+    <%= ff.label(:quantity) %>
+    <%= ff.number_field :quantity, value: 0, min: 0, step: :any %>
+    <%= ff.label(:measure) %>
+    <%= ff.text_field(:measure)%>
+  <% end%>
+  <% end%>
 <%
-=begin %>
-      <% Ingredient.all.each do |testingr| %>
+=end
+%>
+  
+  </div>
+  <%#-- Below is wrapped handicapped and unoptimal method of adding ingredients to micropost form %>
+ <div><%
+=begin 
+ %>
+  <%= f.fields_for(:ingredient_quantities) do |ff| %>
+      <% Ingredient.all.collect do |testingr| %>
       <div id = 'checkbox_experiment'>
-      <%= f.label :"#{testingr.name}", class:"checkbox inline" do %>
-        <%= f.check_box :"#{testingr.name}" %>
+      <%= ff.label :"#{testingr.name}", class:"checkbox inline" do %>
         <span><%= "#{testingr.name}" %> </span>
+        <%= ff.number_field :quantity%><%#"#{ingredient_quantities.find_by(ingredient_id: "#{testingr.id}")}" %>
         </div>
       <% end %>
+  <% end %>
     <% end%>
-<% 
-=end
-%> 
- </div>
- 
+<%
+=end 
+%>
+</div> 
   <%= f.submit "Post", class: "btn btn-primary" %>
    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 <% end %>
+
+
 
 <script type="text/javascript">
   $('#micropost_picture').bind('change', function() {

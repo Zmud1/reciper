@@ -5,7 +5,7 @@
     <%= image_tag micropost.picture.url if micropost.picture? %>
   </span>
   <% micropost.ingredients.each do |ingredient| %>
-  <row class ="ingredients_field"><%= ingredient.name + "____" %></row>
+  <row class ="ingredients_field"><%= micropost.ingredient_quantities.find_by(ingredient_id: ingredient.id).quantity.to_s + " " + micropost.ingredient_quantities.find_by(ingredient_id: ingredient.id).measure.to_s + " " + ingredient.name + "____" %></row>
   <%end%>
   
   <span class="timestamp">

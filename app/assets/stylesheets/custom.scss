@@ -258,9 +258,12 @@ span.picture {
 /* Experimenting with Ingredient params */
 
 #checkbox_experiment {
-  border: 1px solid #bbb;
   width: 100%;
-  padding: 40px;
-  margin-bottom: 15px;
+  padding: 1px;
+  margin-bottom: 1px;
   @include box_sizing;
+}
+
+#choose_ingredient {
+display: none;
 }

@@ -1,0 +1,9 @@
+ <div id = "choose_ingredientt">
+  <%=f.fields_for(:ingredient_quantities) do |ff| %>
+  <%= ff.collection_select(:ingredient_id, Ingredient.order('name ASC'), :id, :name) %>
+    <%= ff.label(:quantity) %>
+    <%= ff.number_field :quantity, value: 0, min: 0, step: :any %>
+    <%= ff.label(:measure) %>
+    <%= ff.text_field(:measure)%>
+  <% end%>
+  </div>
